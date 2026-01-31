@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>br.com.fiap-postech</groupId>
 	<artifactId>video-processing-tracker</artifactId>
+	<version>0.0.9</version>
 
 	<name>video-processing-tracker</name>
 	<description>video-processing-tracker</description>
