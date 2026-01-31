@@ -6,7 +6,7 @@ on:
 
 env:
   EKS_CLUSTER_NAME: eks-postech-fiap-video
-  ECR_REPOSITORY: repository-video-processing-tracker
+  ECR_REPOSITORY: video-processing-tracker
   AWS_REGION: us-east-1
 
 jobs:
