@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>br.com.fiap-postech</groupId>
 	<artifactId>video-processing-tracker</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+
 	<name>video-processing-tracker</name>
-	<description>Demo project for Spring Boot</description>
+	<description>video-processing-tracker</description>
 	<url/>
 	<licenses>
 		<license/>
