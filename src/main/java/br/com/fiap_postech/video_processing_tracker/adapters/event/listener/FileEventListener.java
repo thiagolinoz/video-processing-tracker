@@ -15,8 +15,8 @@ public class FileEventListener {
         this.videoMetadataServicePort = videoMetadataServicePort;
     }
 
-    public VideoModel consume(VideoUploadedCloudEvent event) {
+    public void consume(VideoUploadedCloudEvent event) {
         VideoUploadedModel videoUploadedModel = CloudEventMapper.toModel(event);
-        return videoMetadataServicePort.handleVideo(VideoMapper.toVideoModel(videoUploadedModel));
+        videoMetadataServicePort.handleVideo(VideoMapper.toVideoModel(videoUploadedModel));
     }
 }

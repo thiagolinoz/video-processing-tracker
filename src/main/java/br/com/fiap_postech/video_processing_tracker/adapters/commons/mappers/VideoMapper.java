@@ -33,18 +33,4 @@ public class VideoMapper {
         videoEntity.setNmPersonName(videoModel.getNmPersonName());
         return videoEntity;
     }
-
-    public static VideoModel toModel(VideoEntity videoEntity) {
-        return new VideoModel(
-                videoEntity.getNmPessoaEmail(),
-                videoEntity.getIdVideoSend(),
-                videoEntity.getCdVideoStatus(),
-                videoEntity.getNmVideo(),
-                videoEntity.getNmVideoPathOrigin(),
-                videoEntity.getNmVideoPathZip(),
-                videoEntity.getDateTimeVideoCreated(),
-                videoEntity.getDateTimeVideoProcessCompleted(),
-                videoEntity.getNmPersonName()
-        );
-    }
 }
