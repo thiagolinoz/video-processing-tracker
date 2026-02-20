@@ -1,22 +1,22 @@
 package br.com.fiap_postech.video_processing_tracker.adapters.commons.mappers;
 
+import br.com.fiap_postech.video_processing_tracker.adapters.event.message.VideoUploadedMessage;
 import br.com.fiap_postech.video_processing_tracker.domain.models.VideoModel;
-import br.com.fiap_postech.video_processing_tracker.domain.models.events.VideoUploadedModel;
 import br.com.fiap_postech.video_processing_tracker.infra.db.entities.VideoEntity;
 
 public class VideoMapper {
 
-    public static VideoModel toVideoModel(VideoUploadedModel videoUploadedModel) {
+    public static VideoModel toVideoModel(VideoUploadedMessage videoUploadedMessage) {
         return new VideoModel(
-                videoUploadedModel.nmPessoaEmail(),
-                videoUploadedModel.idVideoSend(),
-                videoUploadedModel.cdVideoStatus(),
-                videoUploadedModel.nmVideo(),
-                videoUploadedModel.nmVideoPathOrigin(),
-                videoUploadedModel.nmVideoPathZip(),
-                videoUploadedModel.dateTimeVideoCreated(),
-                videoUploadedModel.dateTimeVideoProcessCompleted(),
-                videoUploadedModel.nmPersonName()
+                videoUploadedMessage.nmPessoaEmail(),
+                videoUploadedMessage.idVideoSend(),
+                videoUploadedMessage.cdVideoStatus(),
+                videoUploadedMessage.nmVideo(),
+                videoUploadedMessage.nmVideoPathOrigin(),
+                videoUploadedMessage.nmVideoPathZip(),
+                videoUploadedMessage.dateTimeVideoCreated().toInstant(),
+                videoUploadedMessage.dateTimeVideoProcessCompleted().toInstant(),
+                videoUploadedMessage.nmPersonName()
         );
     }
 

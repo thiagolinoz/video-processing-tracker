@@ -1,10 +1,7 @@
 package br.com.fiap_postech.video_processing_tracker.adapters.event.listener;
 
-import br.com.fiap_postech.video_processing_tracker.adapters.commons.mappers.CloudEventMapper;
 import br.com.fiap_postech.video_processing_tracker.adapters.commons.mappers.VideoMapper;
-import br.com.fiap_postech.video_processing_tracker.adapters.dto.VideoUploadedCloudEvent;
-import br.com.fiap_postech.video_processing_tracker.domain.models.VideoModel;
-import br.com.fiap_postech.video_processing_tracker.domain.models.events.VideoUploadedModel;
+import br.com.fiap_postech.video_processing_tracker.adapters.event.message.VideoUploadedMessage;
 import br.com.fiap_postech.video_processing_tracker.domain.ports.in.VideoMetadataServicePort;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,8 +35,8 @@ public class FileEventListener {
                         @Header(KafkaHeaders.OFFSET) long offset,
                         Acknowledgment acknowledgment) {
         try {
-            VideoUploadedModel videoUploadedModel = objectMapper.readValue(message, VideoUploadedModel.class);
-            videoMetadataServicePort.handleVideo(VideoMapper.toVideoModel(videoUploadedModel));
+            VideoUploadedMessage videoUploadedMessage = objectMapper.readValue(message, VideoUploadedMessage.class);
+            videoMetadataServicePort.handleVideo(VideoMapper.toVideoModel(videoUploadedMessage));
 
             acknowledgment.acknowledge();
         } catch (JsonProcessingException e) {
