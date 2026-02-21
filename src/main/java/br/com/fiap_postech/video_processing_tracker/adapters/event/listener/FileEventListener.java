@@ -32,6 +32,7 @@ public class FileEventListener {
     )
     public void consume(@Payload String message,
                         Acknowledgment acknowledgment) {
+        System.out.println(">>> CHEGOU ALGO: " + message);
         objectMapper.registerModule(new JavaTimeModule());
 
         try {
