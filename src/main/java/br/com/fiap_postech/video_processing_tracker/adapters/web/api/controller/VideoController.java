@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 //TODO apagar classe. apenas teste de persistencia
 @Service
@@ -36,8 +37,8 @@ public class VideoController {
                 "ferias_2026.mp4",
                 "/uploads/raw/ferias_2026.mp4",
                 "/uploads/processed/ferias_2026.zip",
-                LocalDateTime.parse("2026-02-20 22:15:00", parser),
-                LocalDateTime.parse("2026-02-20 22:20:00", parser),
+                new Date("2026-02-20 22:15:00"),
+                new Date("2026-02-20 22:20:00"),
                 "Nome da pessoa"
         );
         videoMetadataServicePort.handleVideo(VideoMapper.toVideoModel(videoUploadedMessage));
