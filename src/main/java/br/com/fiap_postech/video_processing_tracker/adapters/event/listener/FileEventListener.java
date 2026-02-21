@@ -45,7 +45,7 @@ public class FileEventListener {
 //        }
 //    }
     @KafkaListener(topics = "received-videos")
-    public void consume(String rawMessage) { // Receba como String pura primeiro
+    public void consume(@Payload String rawMessage) { // Receba como String pura primeiro
         try {
             logger.log(Level.INFO,"Mensagem bruta recebida na AWS: {}", rawMessage);
             // Tente fazer o parsing manual apenas para ver o erro real
