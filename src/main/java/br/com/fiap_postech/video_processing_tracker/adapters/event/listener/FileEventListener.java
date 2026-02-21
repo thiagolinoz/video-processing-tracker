@@ -33,10 +33,13 @@ public class FileEventListener {
     public void consume(@Payload String message,
                         Acknowledgment acknowledgment) {
         System.out.println(">>> CHEGOU ALGO: " + message);
-        //objectMapper.registerModule(new JavaTimeModule());
-
         try {
             VideoUploadedMessage videoUploadedMessage = objectMapper.readValue(message, VideoUploadedMessage.class);
+            if (!videoUploadedMessage.isValidForProcessing()) {
+                logger.log(Level.WARNING, "Mensagem inválida para processamento: {}", videoUploadedMessage);
+                acknowledgment.acknowledge();
+                return;
+            }
             videoMetadataServicePort.handleVideo(VideoMapper.toVideoModel(videoUploadedMessage));
 
             acknowledgment.acknowledge();
