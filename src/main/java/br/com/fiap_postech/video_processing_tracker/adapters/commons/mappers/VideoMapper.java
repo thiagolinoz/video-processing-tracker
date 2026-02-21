@@ -16,8 +16,8 @@ public class VideoMapper {
                 videoUploadedMessage.nmVideo(),
                 videoUploadedMessage.nmVideoPathOrigin(),
                 videoUploadedMessage.nmVideoPathZip(),
-                videoUploadedMessage.dateTimeVideoCreated().atZone(ZoneId.systemDefault()).toInstant(),
-                videoUploadedMessage.dateTimeVideoProcessCompleted().atZone(ZoneId.systemDefault()).toInstant(),
+                videoUploadedMessage.dateTimeVideoCreated().toInstant(),
+                videoUploadedMessage.dateTimeVideoProcessCompleted().toInstant(),
                 videoUploadedMessage.nmPersonName()
         );
     }

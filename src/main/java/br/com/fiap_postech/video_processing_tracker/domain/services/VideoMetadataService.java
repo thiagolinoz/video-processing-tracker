@@ -22,14 +22,14 @@ public class VideoMetadataService implements VideoMetadataServicePort {
         VideoStatusEnum status = VideoStatusEnum.valueOf(videoModel.getCdVideoStatus());
 
         switch (status) {
-            case PROCESS_ERROR -> sendNotification(videoModel.getNmPessoaEmail());
+            case PROCESS_ERROR -> updateVideoError(videoModel.getNmPessoaEmail(), videoModel);
             default -> updateVideoStatus(videoModel);
         };
     }
 
-    //TODO remover metodo
-    private void persistVideo(VideoModel videoModel) {
-        videoMetadataRepositoryPort.insertVideo(videoModel);
+    private void updateVideoError(String email, VideoModel videoModel) {
+        updateVideoStatus(videoModel);
+        sendNotification(email);
     }
 
     private void updateVideoStatus(VideoModel videoModel) {

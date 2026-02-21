@@ -2,7 +2,7 @@ package br.com.fiap_postech.video_processing_tracker.adapters.event.message;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public record VideoUploadedMessage(
         String nmPessoaEmail,
@@ -12,9 +12,9 @@ public record VideoUploadedMessage(
         String nmVideoPathOrigin,
         String nmVideoPathZip,
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-        LocalDateTime dateTimeVideoCreated,
+        Date dateTimeVideoCreated,
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-        LocalDateTime dateTimeVideoProcessCompleted,
+        Date dateTimeVideoProcessCompleted,
         String nmPersonName
 ) {
 }
