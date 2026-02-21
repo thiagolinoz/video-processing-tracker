@@ -9,6 +9,7 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSecon
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
 import java.time.Instant;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -21,8 +22,8 @@ public class VideoEntity {
     private String nmVideo;
     private String nmVideoPathOrigin;
     private String nmVideoPathZip;
-    private Instant dateTimeVideoCreated;
-    private Instant dateTimeVideoProcessCompleted;
+    private Date dateTimeVideoCreated;
+    private Date dateTimeVideoProcessCompleted;
     private String nmPersonName;
 
     @DynamoDbPartitionKey
@@ -76,19 +77,19 @@ public class VideoEntity {
         this.nmVideoPathZip = nmVideoPathZip;
     }
 
-    public Instant getDateTimeVideoCreated() {
+    public Date getDateTimeVideoCreated() {
         return dateTimeVideoCreated;
     }
 
-    public void setDateTimeVideoCreated(Instant dateTimeVideoCreated) {
+    public void setDateTimeVideoCreated(Date dateTimeVideoCreated) {
         this.dateTimeVideoCreated = dateTimeVideoCreated;
     }
 
-    public Instant getDateTimeVideoProcessCompleted() {
+    public Date getDateTimeVideoProcessCompleted() {
         return dateTimeVideoProcessCompleted;
     }
 
-    public void setDateTimeVideoProcessCompleted(Instant dateTimeVideoProcessCompleted) {
+    public void setDateTimeVideoProcessCompleted(Date dateTimeVideoProcessCompleted) {
         this.dateTimeVideoProcessCompleted = dateTimeVideoProcessCompleted;
     }
 

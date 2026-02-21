@@ -1,6 +1,7 @@
 package br.com.fiap_postech.video_processing_tracker.domain.models;
 
 import java.time.Instant;
+import java.util.Date;
 
 public class VideoModel {
     private String nmPessoaEmail;
@@ -9,8 +10,8 @@ public class VideoModel {
     private String nmVideo;
     private String nmVideoPathOrigin;
     private String nmVideoPathZip;
-    private Instant dateTimeVideoCreated;
-    private Instant dateTimeVideoProcessCompleted;
+    private Date dateTimeVideoCreated;
+    private Date dateTimeVideoProcessCompleted = null;
     private String nmPersonName;
 
     public VideoModel() {
@@ -22,8 +23,8 @@ public class VideoModel {
                       String nmVideo,
                       String nmVideoPathOrigin,
                       String nmVideoPathZip,
-                      Instant dateTimeVideoCreated,
-                      Instant dateTimeVideoProcessCompleted,
+                      Date dateTimeVideoCreated,
+                      Date dateTimeVideoProcessCompleted,
                       String nmPersonName) {
         this.nmPessoaEmail = nmPessoaEmail;
         this.idVideoSend = idVideoSend;
@@ -84,19 +85,19 @@ public class VideoModel {
         this.nmVideoPathZip = nmVideoPathZip;
     }
 
-    public Instant getDateTimeVideoCreated() {
+    public Date getDateTimeVideoCreated() {
         return dateTimeVideoCreated;
     }
 
-    public void setDateTimeVideoCreated(Instant dateTimeVideoCreated) {
+    public void setDateTimeVideoCreated(Date dateTimeVideoCreated) {
         this.dateTimeVideoCreated = dateTimeVideoCreated;
     }
 
-    public Instant getDateTimeVideoProcessCompleted() {
+    public Date getDateTimeVideoProcessCompleted() {
         return dateTimeVideoProcessCompleted;
     }
 
-    public void setDateTimeVideoProcessCompleted(Instant dateTimeVideoProcessCompleted) {
+    public void setDateTimeVideoProcessCompleted(Date dateTimeVideoProcessCompleted) {
         this.dateTimeVideoProcessCompleted = dateTimeVideoProcessCompleted;
     }
 

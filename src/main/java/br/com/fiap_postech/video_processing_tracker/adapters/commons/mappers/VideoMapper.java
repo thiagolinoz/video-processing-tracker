@@ -16,8 +16,8 @@ public class VideoMapper {
                 videoUploadedMessage.getNmVideo(),
                 videoUploadedMessage.getNmVideoPathOrigin(),
                 videoUploadedMessage.getNmVideoPathZip(),
-                videoUploadedMessage.getDateTimeVideoCreated().toInstant(),
-                videoUploadedMessage.getDateTimeVideoProcessCompleted().toInstant(),
+                videoUploadedMessage.getDateTimeVideoCreated(),
+                videoUploadedMessage.getDateTimeVideoProcessCompleted(),
                 videoUploadedMessage.getNmPersonName()
         );
     }
