@@ -10,15 +10,15 @@ public class VideoMapper {
 
     public static VideoModel toVideoModel(VideoUploadedMessage videoUploadedMessage) {
         return new VideoModel(
-                videoUploadedMessage.nmPessoaEmail(),
-                videoUploadedMessage.idVideoSend(),
-                videoUploadedMessage.cdVideoStatus(),
-                videoUploadedMessage.nmVideo(),
-                videoUploadedMessage.nmVideoPathOrigin(),
-                videoUploadedMessage.nmVideoPathZip(),
-                videoUploadedMessage.dateTimeVideoCreated().toInstant(),
-                videoUploadedMessage.dateTimeVideoProcessCompleted().toInstant(),
-                videoUploadedMessage.nmPersonName()
+                videoUploadedMessage.getNmPersonEmail(),
+                videoUploadedMessage.getIdVideoSend(),
+                videoUploadedMessage.getCdVideoStatus(),
+                videoUploadedMessage.getNmVideo(),
+                videoUploadedMessage.getNmVideoPathOrigin(),
+                videoUploadedMessage.getNmVideoPathZip(),
+                videoUploadedMessage.getDateTimeVideoCreated().toInstant(),
+                videoUploadedMessage.getDateTimeVideoProcessCompleted().toInstant(),
+                videoUploadedMessage.getNmPersonName()
         );
     }
 
