@@ -10,6 +10,7 @@ import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.stereotype.Component;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,14 +26,9 @@ public class FileEventListener {
     }
 
     @KafkaListener(
-            topics = "received-videos",
-            groupId = "${kafka.consumer.group-id}",
-            containerFactory = "kafkaListenerContainerFactory"
+            topics = "received-videos"
     )
     public void consume(@Payload String message,
-                        @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
-                        @Header(KafkaHeaders.RECEIVED_PARTITION) int partition,
-                        @Header(KafkaHeaders.OFFSET) long offset,
                         Acknowledgment acknowledgment) {
         try {
             VideoUploadedMessage videoUploadedMessage = objectMapper.readValue(message, VideoUploadedMessage.class);
