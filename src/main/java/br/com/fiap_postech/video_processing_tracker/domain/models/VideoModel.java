@@ -1,8 +1,18 @@
 package br.com.fiap_postech.video_processing_tracker.domain.models;
 
-import java.time.Instant;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VideoModel {
     private String nmPessoaEmail;
     private String idVideoSend;
@@ -13,29 +23,6 @@ public class VideoModel {
     private Date dateTimeVideoCreated;
     private Date dateTimeVideoProcessCompleted = null;
     private String nmPersonName;
-
-    public VideoModel() {
-    }
-
-    public VideoModel(String nmPessoaEmail,
-                      String idVideoSend,
-                      String cdVideoStatus,
-                      String nmVideo,
-                      String nmVideoPathOrigin,
-                      String nmVideoPathZip,
-                      Date dateTimeVideoCreated,
-                      Date dateTimeVideoProcessCompleted,
-                      String nmPersonName) {
-        this.nmPessoaEmail = nmPessoaEmail;
-        this.idVideoSend = idVideoSend;
-        this.cdVideoStatus = cdVideoStatus;
-        this.nmVideo = nmVideo;
-        this.nmVideoPathOrigin = nmVideoPathOrigin;
-        this.nmVideoPathZip = nmVideoPathZip;
-        this.dateTimeVideoCreated = dateTimeVideoCreated;
-        this.dateTimeVideoProcessCompleted = dateTimeVideoProcessCompleted;
-        this.nmPersonName = nmPersonName;
-    }
 
     public String getNmPessoaEmail() {
         return nmPessoaEmail;
