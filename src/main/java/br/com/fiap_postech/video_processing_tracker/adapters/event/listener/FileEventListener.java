@@ -28,7 +28,7 @@ public class FileEventListener {
     }
 
     @KafkaListener(
-            topics = "received-videos"
+            topics = "process-status-videos"
     )
     public void consume(@Payload String message,
                         Acknowledgment acknowledgment) {
@@ -40,22 +40,12 @@ public class FileEventListener {
                 acknowledgment.acknowledge();
                 return;
             }
-            videoMetadataServicePort.handleVideo(VideoMapper.toVideoModel(videoUploadedMessage));
+            videoMetadataServicePort.handleVideo(VideoMapper.toVideoModelMessage(videoUploadedMessage));
 
             acknowledgment.acknowledge();
         } catch (JsonProcessingException e) {
             logger.log(Level.SEVERE, "Error while parsing message from topic");
         }
     }
-//    @KafkaListener(topics = "received-videos")
-//    public void consume(@Payload String rawMessage) { // Receba como String pura primeiro
-//        try {
-//            logger.log(Level.INFO,"Mensagem bruta recebida na AWS: {}", rawMessage);
-//            // Tente fazer o parsing manual apenas para ver o erro real
-//            VideoUploadedMessage objeto = objectMapper.readValue(rawMessage, VideoUploadedMessage.class);
-//        } catch (Exception e) {
-//            logger.log(Level.WARNING,"ERRO DE PARSING NA AWS: ", e);
-//        }
-//}
 
 }

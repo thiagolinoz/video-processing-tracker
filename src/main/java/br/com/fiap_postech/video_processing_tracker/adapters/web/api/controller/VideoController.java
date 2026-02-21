@@ -29,20 +29,6 @@ public class VideoController {
 
     @PostMapping("/user/{email}/videos/create/{status}")
     public ResponseEntity<Void> createVideo(@PathVariable("email") String email, @PathVariable("status") String status) {
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        VideoUploadedMessage videoUploadedMessage = new VideoUploadedMessage(
-                email,
-                "uuid-12345-67890",
-                status,
-                "ferias_2026.mp4",
-                "/uploads/raw/ferias_2026.mp4",
-                "/uploads/processed/ferias_2026.zip",
-                new Date("2026-02-20 22:15:00"),
-                new Date("2026-02-20 22:20:00"),
-                "Nome da pessoa"
-        );
-        videoMetadataServicePort.handleVideo(VideoMapper.toVideoModel(videoUploadedMessage));
-
-        return ResponseEntity.created(URI.create("/api/v1/user/videos/create/status")).build();
+         return ResponseEntity.created(URI.create("/api/v1/user/videos/create/status")).build();
     }
 }

@@ -4,40 +4,35 @@ import br.com.fiap_postech.video_processing_tracker.adapters.event.message.Video
 import br.com.fiap_postech.video_processing_tracker.domain.models.VideoModel;
 import br.com.fiap_postech.video_processing_tracker.infra.db.entities.VideoEntity;
 
-import java.time.Instant;
-import java.time.ZoneId;
-
 public class VideoMapper {
 
-    public static VideoModel toVideoModel(VideoUploadedMessage videoUploadedMessage) {
+    public static VideoModel toVideoModelMessage(VideoUploadedMessage videoUploadedMessage) {
         return new VideoModel(
                 videoUploadedMessage.getNmPersonEmail(),
                 videoUploadedMessage.getIdVideoSend(),
                 videoUploadedMessage.getCdVideoStatus(),
                 videoUploadedMessage.getNmVideo(),
-                videoUploadedMessage.getNmVideoPathOrigin(),
-                videoUploadedMessage.getNmVideoPathZip(),
-                videoUploadedMessage.getDateTimeVideoCreated(),
+                videoUploadedMessage.getNmPersonName(),
                 videoUploadedMessage.getDateTimeVideoProcessCompleted(),
-                videoUploadedMessage.getNmPersonName()
+                videoUploadedMessage.getNmVideoPathZip(),
+                videoUploadedMessage.getErrorMessage() != null ? videoUploadedMessage.getErrorMessage() : null
         );
     }
 
-    public static VideoEntity toEntity(VideoModel videoModel) {
+    public static VideoEntity toEntityMessage(VideoModel videoModel) {
         VideoEntity videoEntity = new VideoEntity();
         videoEntity.setNmPessoaEmail(videoModel.getNmPessoaEmail());
         videoEntity.setIdVideoSend(videoModel.getIdVideoSend());
         videoEntity.setCdVideoStatus(videoModel.getCdVideoStatus());
         videoEntity.setNmVideo(videoModel.getNmVideo());
-        videoEntity.setNmVideoPathOrigin(videoModel.getNmVideoPathOrigin());
-        videoEntity.setNmVideoPathZip(videoModel.getNmVideoPathZip());
-        videoEntity.setDateTimeVideoCreated(videoModel.getDateTimeVideoCreated().toInstant());
+        videoEntity.setNmPersonName(videoModel.getNmPersonName());
         if (videoModel.getDateTimeVideoProcessCompleted() != null){
             videoEntity.setDateTimeVideoProcessCompleted(videoModel.getDateTimeVideoProcessCompleted().toInstant());
         }else{
             videoEntity.setDateTimeVideoProcessCompleted(null);
         }
-        videoEntity.setNmPersonName(videoModel.getNmPersonName());
+        videoEntity.setNmVideoPathZip(videoModel.getNmVideoPathZip());
+        videoEntity.setErrorMessage(videoModel.getErrorMessage() != null ? videoModel.getErrorMessage() : null);
         return videoEntity;
     }
 }

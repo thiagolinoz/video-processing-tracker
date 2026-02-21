@@ -20,14 +20,8 @@ public class VideoMetadataRepository implements VideoMetadataRepositoryPort {
     }
 
     @Override
-    public void insertVideo(VideoModel videoModel) {
-        VideoEntity videoEntity = VideoMapper.toEntity(videoModel);
-        tableVideo.putItem(videoEntity);
-    }
-
-    @Override
     public void updateVideoStatus(VideoModel videoModel) {
-        VideoEntity videoEntity = VideoMapper.toEntity(videoModel);
+        VideoEntity videoEntity = VideoMapper.toEntityMessage(videoModel);
         tableVideo.updateItem(videoEntity);
     }
 }

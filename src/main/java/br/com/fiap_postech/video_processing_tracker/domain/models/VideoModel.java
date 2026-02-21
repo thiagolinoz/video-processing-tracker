@@ -17,10 +17,9 @@ public class VideoModel {
     private String idVideoSend;
     private String cdVideoStatus;
     private String nmVideo;
-    private String nmVideoPathOrigin;
-    private String nmVideoPathZip;
-    private Date dateTimeVideoCreated;
-    private Date dateTimeVideoProcessCompleted = null;
     private String nmPersonName;
+    private Date dateTimeVideoProcessCompleted = null;
+    private String nmVideoPathZip;
+    private String errorMessage = null;
 
 }
