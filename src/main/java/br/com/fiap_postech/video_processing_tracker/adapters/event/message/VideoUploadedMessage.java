@@ -11,9 +11,9 @@ public record VideoUploadedMessage(
         String nmVideo,
         String nmVideoPathOrigin,
         String nmVideoPathZip,
-        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
         Date dateTimeVideoCreated,
-        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
         Date dateTimeVideoProcessCompleted,
         String nmPersonName
 ) {
