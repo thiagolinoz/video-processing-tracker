@@ -4,6 +4,7 @@ import br.com.fiap_postech.video_processing_tracker.adapters.event.message.Video
 import br.com.fiap_postech.video_processing_tracker.domain.models.VideoModel;
 import br.com.fiap_postech.video_processing_tracker.infra.db.entities.VideoEntity;
 
+import java.time.Instant;
 import java.time.ZoneId;
 
 public class VideoMapper {
@@ -31,7 +32,11 @@ public class VideoMapper {
         videoEntity.setNmVideoPathOrigin(videoModel.getNmVideoPathOrigin());
         videoEntity.setNmVideoPathZip(videoModel.getNmVideoPathZip());
         videoEntity.setDateTimeVideoCreated(videoModel.getDateTimeVideoCreated().toInstant());
-        videoEntity.setDateTimeVideoProcessCompleted(videoModel.getDateTimeVideoProcessCompleted().toInstant());
+        if (videoModel.getDateTimeVideoProcessCompleted() != null){
+            videoEntity.setDateTimeVideoProcessCompleted(videoModel.getDateTimeVideoProcessCompleted().toInstant());
+        }else{
+            videoEntity.setDateTimeVideoProcessCompleted(null);
+        }
         videoEntity.setNmPersonName(videoModel.getNmPersonName());
         return videoEntity;
     }
