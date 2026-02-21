@@ -9,7 +9,6 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSecon
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
 import java.time.Instant;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -22,8 +21,8 @@ public class VideoEntity {
     private String nmVideo;
     private String nmVideoPathOrigin;
     private String nmVideoPathZip;
-    private Date dateTimeVideoCreated;
-    private Date dateTimeVideoProcessCompleted;
+    private Instant dateTimeVideoCreated;
+    private Instant dateTimeVideoProcessCompleted;
     private String nmPersonName;
 
     @DynamoDbPartitionKey
@@ -77,19 +76,19 @@ public class VideoEntity {
         this.nmVideoPathZip = nmVideoPathZip;
     }
 
-    public Date getDateTimeVideoCreated() {
+    public Instant getDateTimeVideoCreated() {
         return dateTimeVideoCreated;
     }
 
-    public void setDateTimeVideoCreated(Date dateTimeVideoCreated) {
+    public void setDateTimeVideoCreated(Instant dateTimeVideoCreated) {
         this.dateTimeVideoCreated = dateTimeVideoCreated;
     }
 
-    public Date getDateTimeVideoProcessCompleted() {
+    public Instant getDateTimeVideoProcessCompleted() {
         return dateTimeVideoProcessCompleted;
     }
 
-    public void setDateTimeVideoProcessCompleted(Date dateTimeVideoProcessCompleted) {
+    public void setDateTimeVideoProcessCompleted(Instant dateTimeVideoProcessCompleted) {
         this.dateTimeVideoProcessCompleted = dateTimeVideoProcessCompleted;
     }
 
@@ -99,5 +98,20 @@ public class VideoEntity {
 
     public void setNmPersonName(String nmPersonName) {
         this.nmPersonName = nmPersonName;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoEntity{" +
+                "nmPersonEmail='" + nmPessoaEmail + '\'' +
+                ", idVideoSend='" + idVideoSend + '\'' +
+                ", cdVideoStatus='" + cdVideoStatus + '\'' +
+                ", nmVideo='" + nmVideo + '\'' +
+                ", nmVideoPathOrigin='" + nmVideoPathOrigin + '\'' +
+                ", nmVideoPathZip='" + nmVideoPathZip + '\'' +
+                ", dateTimeVideoCreated=" + dateTimeVideoCreated +
+                ", dateTimeVideoProcessCompleted=" + dateTimeVideoProcessCompleted +
+                ", nmPersonName='" + nmPersonName + '\'' +
+                '}';
     }
 }

@@ -30,8 +30,8 @@ public class VideoMapper {
         videoEntity.setNmVideo(videoModel.getNmVideo());
         videoEntity.setNmVideoPathOrigin(videoModel.getNmVideoPathOrigin());
         videoEntity.setNmVideoPathZip(videoModel.getNmVideoPathZip());
-        videoEntity.setDateTimeVideoCreated(videoModel.getDateTimeVideoCreated());
-        videoEntity.setDateTimeVideoProcessCompleted(videoModel.getDateTimeVideoProcessCompleted());
+        videoEntity.setDateTimeVideoCreated(videoModel.getDateTimeVideoCreated().toInstant());
+        videoEntity.setDateTimeVideoProcessCompleted(videoModel.getDateTimeVideoProcessCompleted().toInstant());
         videoEntity.setNmPersonName(videoModel.getNmPersonName());
         return videoEntity;
     }
