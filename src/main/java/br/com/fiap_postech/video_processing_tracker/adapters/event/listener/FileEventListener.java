@@ -5,6 +5,7 @@ import br.com.fiap_postech.video_processing_tracker.adapters.event.message.Video
 import br.com.fiap_postech.video_processing_tracker.domain.ports.in.VideoMetadataServicePort;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -31,6 +32,8 @@ public class FileEventListener {
     )
     public void consume(@Payload String message,
                         Acknowledgment acknowledgment) {
+        objectMapper.registerModule(new JavaTimeModule());
+
         try {
             VideoUploadedMessage videoUploadedMessage = objectMapper.readValue(message, VideoUploadedMessage.class);
             videoMetadataServicePort.handleVideo(VideoMapper.toVideoModel(videoUploadedMessage));

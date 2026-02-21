@@ -4,6 +4,8 @@ import br.com.fiap_postech.video_processing_tracker.adapters.event.message.Video
 import br.com.fiap_postech.video_processing_tracker.domain.models.VideoModel;
 import br.com.fiap_postech.video_processing_tracker.infra.db.entities.VideoEntity;
 
+import java.time.ZoneId;
+
 public class VideoMapper {
 
     public static VideoModel toVideoModel(VideoUploadedMessage videoUploadedMessage) {
@@ -14,8 +16,8 @@ public class VideoMapper {
                 videoUploadedMessage.nmVideo(),
                 videoUploadedMessage.nmVideoPathOrigin(),
                 videoUploadedMessage.nmVideoPathZip(),
-                videoUploadedMessage.dateTimeVideoCreated().toInstant(),
-                videoUploadedMessage.dateTimeVideoProcessCompleted().toInstant(),
+                videoUploadedMessage.dateTimeVideoCreated().atZone(ZoneId.systemDefault()).toInstant(),
+                videoUploadedMessage.dateTimeVideoProcessCompleted().atZone(ZoneId.systemDefault()).toInstant(),
                 videoUploadedMessage.nmPersonName()
         );
     }
