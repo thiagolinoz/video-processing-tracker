@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
+import software.amazon.awssdk.enhanced.dynamodb.model.IgnoreNullsMode;
+import software.amazon.awssdk.enhanced.dynamodb.model.UpdateItemEnhancedRequest;
 
 @Component
 public class VideoMetadataRepository implements VideoMetadataRepositoryPort {
@@ -22,6 +24,10 @@ public class VideoMetadataRepository implements VideoMetadataRepositoryPort {
     @Override
     public void updateVideoStatus(VideoModel videoModel) {
         VideoEntity videoEntity = VideoMapper.toEntityMessage(videoModel);
-        tableVideo.updateItem(videoEntity);
+        UpdateItemEnhancedRequest<VideoEntity> request = UpdateItemEnhancedRequest.builder(VideoEntity.class)
+                .item(videoEntity)
+                .ignoreNullsMode(IgnoreNullsMode.SCALAR_ONLY)
+                .build();
+        tableVideo.updateItem(request);
     }
 }
