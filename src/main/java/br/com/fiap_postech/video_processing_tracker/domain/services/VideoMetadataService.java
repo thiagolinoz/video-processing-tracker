@@ -38,11 +38,19 @@ public class VideoMetadataService implements VideoMetadataServicePort {
     }
 
     private void updateVideoStatus(VideoModel videoModel) {
-        logger.log(Level.INFO, "Atualizando status do video no dynamo com status: {}", videoModel.getCdVideoStatus());
-        videoMetadataRepositoryPort.updateVideoStatus(videoModel);
+        try {
+            logger.log(Level.INFO, "Atualizando status do video no dynamo com status: {}", videoModel.getCdVideoStatus());
+            videoMetadataRepositoryPort.updateVideoStatus(videoModel);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void sendNotification(String email) {
-        notificationPort.send(email);
+        try {
+            notificationPort.send(email);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
