@@ -45,6 +45,8 @@ public class FileEventListener {
             acknowledgment.acknowledge();
         } catch (JsonProcessingException e) {
             logger.log(Level.SEVERE, "Error while parsing message from topic");
+            //TODO: Remover o acknowledgment do cath, estamos usando só para testar
+            acknowledgment.acknowledge();
         }
     }
 
