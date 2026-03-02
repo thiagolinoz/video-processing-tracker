@@ -63,7 +63,7 @@ jobs:
             --from-literal=access-key-id="${{ secrets.AWS_ACCESS_KEY_ID }}" \
             --from-literal=secret-access-key="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
             --from-literal=session-token="${{ secrets.AWS_SESSION_TOKEN }}" \
-            --from-literal=mail-password=${{ secrets.MAIL_PASSWORD }} \
+            --from-literal=mail-password="${{ secrets.MAIL_PASSWORD }}" \
             --dry-run=client -o yaml | kubectl apply -f -
           
           kubectl apply -f ./k8s/configmap.yaml
