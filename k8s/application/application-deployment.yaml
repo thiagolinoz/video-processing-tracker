@@ -43,7 +43,7 @@ spec:
                 secretKeyRef:
                   name: app-credentials
                   key: session-token
-            - name: MAIL_PASSWORD
+            - name: SPRING_MAIL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: app-credentials
