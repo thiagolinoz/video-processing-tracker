@@ -2,13 +2,12 @@ name: CI/CD com Dockerfile
 
 on:
   push:
-    branches: [main, master, feature/storage, feature/storage-dockericado]
+    branches: [main, master, feature/storage, feature/storage-dockericado, develop]
 
 env:
   EKS_CLUSTER_NAME: eks-postech-fiap-video
   ECR_REPOSITORY: video-processing-tracker
   AWS_REGION: us-east-1
-  MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
 
 jobs:
   build-and-push:
@@ -60,10 +59,11 @@ jobs:
           aws eks update-kubeconfig --region us-east-1 --name ${{ env.EKS_CLUSTER_NAME }}
 
           # 2. Atualiza o Secret no K8s com os valores do GitHub Secrets
-          kubectl create secret generic aws-academy-credentials \
+          kubectl create secret generic app-credentials \
             --from-literal=access-key-id="${{ secrets.AWS_ACCESS_KEY_ID }}" \
             --from-literal=secret-access-key="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
             --from-literal=session-token="${{ secrets.AWS_SESSION_TOKEN }}" \
+            --from-literal=mail-password="${{ secrets.MAIL_PASSWORD }}" \
             --dry-run=client -o yaml | kubectl apply -f -
           
           kubectl apply -f ./k8s/configmap.yaml
