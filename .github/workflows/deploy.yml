@@ -2,7 +2,7 @@ name: CI/CD com Dockerfile
 
 on:
   push:
-    branches: [main, master, feature/storage, feature/storage-dockericado, develop]
+    branches: [main, master, feature/storage, feature/storage-dockericado, develop, feature/dns]
 
 env:
   EKS_CLUSTER_NAME: eks-postech-fiap-video
