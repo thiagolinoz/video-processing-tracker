@@ -19,11 +19,12 @@ public class VideoEntity {
     private String idVideoSend;
     private String cdVideoStatus;
     private String nmVideo;
-    private String nmVideoPathOrigin;
+    private String nmVideoPathOrigin = null;
     private String nmVideoPathZip;
-    private Instant dateTimeVideoCreated;
+    private Instant dateTimeVideoCreated = null;
     private Instant dateTimeVideoProcessCompleted;
     private String nmPersonName;
+    private String errorMessage = null;
 
     @DynamoDbPartitionKey
     public String getNmPessoaEmail() {
@@ -99,4 +100,29 @@ public class VideoEntity {
     public void setNmPersonName(String nmPersonName) {
         this.nmPersonName = nmPersonName;
     }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoEntity{" +
+                "nmPersonEmail='" + nmPessoaEmail + '\'' +
+                ", idVideoSend='" + idVideoSend + '\'' +
+                ", cdVideoStatus='" + cdVideoStatus + '\'' +
+                ", nmVideo='" + nmVideo + '\'' +
+                ", nmVideoPathOrigin='" + nmVideoPathOrigin + '\'' +
+                ", nmVideoPathZip='" + nmVideoPathZip + '\'' +
+                ", dateTimeVideoCreated=" + dateTimeVideoCreated +
+                ", dateTimeVideoProcessCompleted=" + dateTimeVideoProcessCompleted +
+                ", nmPersonName='" + nmPersonName + '\'' +
+                '}';
+    }
+
+
 }

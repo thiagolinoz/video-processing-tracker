@@ -31,18 +31,23 @@ spec:
             - name: AWS_ACCESS_KEY_ID # comentar daqui p deploy sem action
               valueFrom:
                 secretKeyRef:
-                  name: aws-academy-credentials
+                  name: app-credentials
                   key: access-key-id
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: aws-academy-credentials
+                  name: app-credentials
                   key: secret-access-key
             - name: AWS_SESSION_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: aws-academy-credentials
-                  key: session-token # comentar ate aqui p deploy sem action
+                  name: app-credentials
+                  key: session-token
+            - name: SPRING_MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-credentials
+                  key: mail-password # comentar ate aqui p deploy sem action
 #            - name: AWS_ACCESS_KEY_ID
 #              value: "ID_DA_TUA_CONTA_ACADEMY"
 #            - name: AWS_SECRET_ACCESS_KEY

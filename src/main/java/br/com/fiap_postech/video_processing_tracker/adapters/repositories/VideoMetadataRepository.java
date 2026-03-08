@@ -4,10 +4,14 @@ import br.com.fiap_postech.video_processing_tracker.adapters.commons.mappers.Vid
 import br.com.fiap_postech.video_processing_tracker.domain.models.VideoModel;
 import br.com.fiap_postech.video_processing_tracker.domain.ports.out.VideoMetadataRepositoryPort;
 import br.com.fiap_postech.video_processing_tracker.infra.db.entities.VideoEntity;
+import org.springframework.stereotype.Component;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
+import software.amazon.awssdk.enhanced.dynamodb.model.IgnoreNullsMode;
+import software.amazon.awssdk.enhanced.dynamodb.model.UpdateItemEnhancedRequest;
 
+@Component
 public class VideoMetadataRepository implements VideoMetadataRepositoryPort {
 
     private final DynamoDbTable<VideoEntity> tableVideo;
@@ -18,14 +22,12 @@ public class VideoMetadataRepository implements VideoMetadataRepositoryPort {
     }
 
     @Override
-    public void insertVideo(VideoModel videoModel) {
-        VideoEntity videoEntity = VideoMapper.toEntity(videoModel);
-        tableVideo.putItem(videoEntity);
-    }
-
-    @Override
     public void updateVideoStatus(VideoModel videoModel) {
-        VideoEntity videoEntity = VideoMapper.toEntity(videoModel);
-        tableVideo.updateItem(videoEntity);
+        VideoEntity videoEntity = VideoMapper.toEntityMessage(videoModel);
+        UpdateItemEnhancedRequest<VideoEntity> request = UpdateItemEnhancedRequest.builder(VideoEntity.class)
+                .item(videoEntity)
+                .ignoreNullsMode(IgnoreNullsMode.SCALAR_ONLY)
+                .build();
+        tableVideo.updateItem(request);
     }
 }
